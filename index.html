@@ -75,6 +75,15 @@
       header{flex-direction:column;align-items:flex-start}
       .actions{justify-content:flex-start}
     }
+    @media (max-width: 650px){
+      .row{
+        flex-direction: column;
+      }
+      .when{
+        min-width: auto;
+        font-size: 12px;
+      }
+    }
     .card{
       background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
       border:1px solid rgba(255,255,255,.08);
@@ -163,6 +172,10 @@
         <a class="btn primary" href="https://zenn.dev/kmtech" target="_blank" rel="noopener noreferrer">
           📝 Zenn（技術記事）
         </a>
+        <a class="btn" href="https://github.com/KM-rira" target="_blank" rel="noopener noreferrer">
+          💻 GitHub
+        </a>
+        <a class="btn" href="#certifications">🏅 資格</a>
         <a class="btn" href="#projects">📌 案件履歴</a>
         <a class="btn" href="#skills">🧰 Skills</a>
       </div>
@@ -197,6 +210,19 @@
           ※このページは1ファイルで完結（HTML+CSS）しています。必要なら「お問い合わせ」導線や「実績の数値（例：処理時間◯%改善）」も追記できます。
         </p>
       </div>
+
+<section class="card" id="certifications" style="margin-top:16px">
+  <h2>資格 <span class="pill">Certifications</span></h2>
+
+  <div class="skills" style="margin-top:12px">
+    <span class="chip">AWS Certified Developer – Associate</span>
+    <span class="chip">GCP Associate Cloud Engineer</span>
+    <span class="chip">JDLA ディープラーニングG検定</span>
+    <span class="chip">Python3 エンジニア認定基礎資格</span>
+    <span class="chip">Python3 データ分析資格</span>
+    <span class="chip">LinuC Level 1</span>
+  </div>
+</section>
 
       <aside class="card">
         <h2 id="skills">スキル一覧 <span class="pill">All Skills</span></h2>
