@@ -3,24 +3,26 @@ set -euo pipefail
 
 : "${MY_DOMAIN:?MY_DOMAIN is required (e.g. kmdigital.xyz)}"
 
-SRC="${HOME}/repo/profile/index.html"
+SRC_DIR="${HOME}/repo/profile"
 DST_DIR="/var/www/${MY_DOMAIN}/profile"
-DST="${DST_DIR}/index.html"
 
-echo "[deploy] copy ${SRC} -> ${DST}"
+echo "[deploy] sync ${SRC_DIR} -> ${DST_DIR}"
 
-# ディレクトリが無いと cp が落ちるので作る
 sudo mkdir -p "${DST_DIR}"
 
-# 原子コピー（途中で壊れたファイルが出ない）
+# index.html を原子的に反映
 tmp="$(mktemp)"
-cp "${SRC}" "${tmp}"
-sudo mv "${tmp}" "${DST}"
+cp "${SRC_DIR}/index.html" "${tmp}"
+sudo mv "${tmp}" "${DST_DIR}/index.html"
 
-# 権限：全部chown/chmodするとデカい構成で遅いので必要最小限
+# assets があれば同期
+if [ -d "${SRC_DIR}/assets" ]; then
+  sudo mkdir -p "${DST_DIR}/assets"
+  sudo rsync -av --delete "${SRC_DIR}/assets/" "${DST_DIR}/assets/"
+fi
+
+# 権限
 sudo chown -R caddy:caddy "/var/www/${MY_DOMAIN}" || true
-
-# 755を丸ごとは雑に強いので、dirだけ755、ファイルは644がおすすめ
 sudo find "/var/www/${MY_DOMAIN}" -type d -exec chmod 755 {} \;
 sudo find "/var/www/${MY_DOMAIN}" -type f -exec chmod 644 {} \;
 
@@ -30,4 +32,4 @@ sudo caddy validate --config /etc/caddy/Caddyfile
 sudo systemctl reload caddy
 
 echo "[deploy] done"
-echo "${MY_DOMAIN_URL}/profile"
+echo "https://${MY_DOMAIN}/profile/"
