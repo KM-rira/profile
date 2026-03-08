@@ -4,7 +4,7 @@ function App() {
             <header>
                 <div className="brand profile-head">
                     <img
-                        src="/assets/my-image.png"
+                        src={`${import.meta.env.BASE_URL}/assets/my-image.png`}
                         alt="KMTech profile icon"
                         className="profile-icon"
                     />
