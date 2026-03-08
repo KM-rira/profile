@@ -3,23 +3,18 @@ set -euo pipefail
 
 : "${MY_DOMAIN:?MY_DOMAIN is required (e.g. kmdigital.xyz)}"
 
-SRC_DIR="${HOME}/repo/profile"
+APP_DIR="${HOME}/repo/profile"
+BUILD_DIR="${APP_DIR}/dist"
 DST_DIR="/var/www/${MY_DOMAIN}/profile"
 
-echo "[deploy] sync ${SRC_DIR} -> ${DST_DIR}"
+echo "[deploy] build React app"
+cd "${APP_DIR}"
+bun run build
 
+echo "[deploy] sync ${BUILD_DIR} -> ${DST_DIR}"
 sudo mkdir -p "${DST_DIR}"
 
-# index.html を原子的に反映
-tmp="$(mktemp)"
-cp "${SRC_DIR}/index.html" "${tmp}"
-sudo mv "${tmp}" "${DST_DIR}/index.html"
-
-# assets があれば同期
-if [ -d "${SRC_DIR}/assets" ]; then
-  sudo mkdir -p "${DST_DIR}/assets"
-  sudo rsync -av --delete "${SRC_DIR}/assets/" "${DST_DIR}/assets/"
-fi
+sudo rsync -av --delete "${BUILD_DIR}/" "${DST_DIR}/"
 
 # 権限
 sudo chown -R caddy:caddy "/var/www/${MY_DOMAIN}" || true
