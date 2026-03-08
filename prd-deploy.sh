@@ -27,4 +27,4 @@ sudo caddy validate --config /etc/caddy/Caddyfile
 sudo systemctl reload caddy
 
 echo "[deploy] done"
-echo "https://${MY_DOMAIN}/profile/"
+echo "${MY_DOMAIN_URL}/profile/"
