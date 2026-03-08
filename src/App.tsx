@@ -1,4 +1,9 @@
+import { useState } from "react";
+import { projects, type Project } from "./data/projects";
+
 function App() {
+
+    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     return (
         <div className="wrap">
             <header>
@@ -165,145 +170,65 @@ function App() {
 
             <section className="card" id="projects" style={{ marginTop: "16px" }}>
                 <h2>
-                    案件履歴 <span className="pill">Projects</span>
+                    案件履歴 -- クリックすると詳細が表示されます！ <span className="pill">Projects</span>
                 </h2>
 
                 <ul className="list">
-                    <li className="row">
-                        <div className="when">2025/12〜2026/04</div>
-                        <div>
-                            <div className="role">AI×経理自動化</div>
-                            <div className="meta">
-                                Go / TypeScript / React / GCP（GKE, Cloud Spanner）
+                    {projects.map((project) => (
+                        <li
+                            key={project.id}
+                            className="row clickable-row"
+                            onClick={() => {
+                                console.log("clicked", project);
+                                setSelectedProject(project)
+                            }}
+                        >
+                            <div className="when">{project.period}</div>
+                            <div>
+                                <div className="role">{project.title}</div>
+                                <div className="meta">{project.meta}</div>
+                                <div className="skills">
+                                    {project.chips.map((chip) => (
+                                        <span key={chip} className="chip">
+                                            {chip}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
-                            <div className="skills">
-                                <span className="chip">要件整理</span>
-                                <span className="chip">設計</span>
-                                <span className="chip">実装</span>
-                                <span className="chip">レビュー</span>
-                                <span className="chip">運用</span>
-                                <span className="chip">バッチ性能改善</span>
-                                <span className="chip">障害対応</span>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li className="row">
-                        <div className="when">2025/02〜2025/11</div>
-                        <div>
-                            <div className="role">カードコレクションゲーム（新規開発）</div>
-                            <div className="meta">
-                                Go（Echo）/ Snowflake / TypeScript / React / GCP
-                            </div>
-                            <div className="skills">
-                                <span className="chip">課金</span>
-                                <span className="chip">ガチャ</span>
-                                <span className="chip">マスターデータJob</span>
-                                <span className="chip">運用改善（ログ調査）</span>
-                                <span className="chip">不具合対応</span>
-                                <span className="chip">分析クエリ作成</span>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li className="row">
-                        <div className="when">2024/07〜2025/01</div>
-                        <div>
-                            <div className="role">求人プラットフォーム（新規開発）</div>
-                            <div className="meta">Go（Echo）/ TypeScript / React / AWS</div>
-                            <div className="skills">
-                                <span className="chip">機能追加（複数）</span>
-                                <span className="chip">バッチ不具合調査</span>
-                                <span className="chip">原因特定</span>
-                                <span className="chip">改修</span>
-                                <span className="chip">関係者連携</span>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li className="row">
-                        <div className="when">2020/05〜2024/06</div>
-                        <div>
-                            <div className="role">MVNO回線情報管理（長期）</div>
-                            <div className="meta">Go / AWS（運用含む）/ TypeScript / React</div>
-                            <div className="skills">
-                                <span className="chip">要件定義</span>
-                                <span className="chip">設計</span>
-                                <span className="chip">開発</span>
-                                <span className="chip">テスト</span>
-                                <span className="chip">リリース</span>
-                                <span className="chip">Go 1.14→1.21.7</span>
-                                <span className="chip">ライブラリ更新</span>
-                                <span className="chip">スクラムマスター</span>
-                                <span className="chip">ドキュメント整備</span>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li className="row">
-                        <div className="when">2020/04〜2021/07</div>
-                        <div>
-                            <div className="role">メーカー基幹システム</div>
-                            <div className="meta">Go / AWS / TypeScript / React</div>
-                            <div className="skills">
-                                <span className="chip">要件定義</span>
-                                <span className="chip">設計</span>
-                                <span className="chip">開発</span>
-                                <span className="chip">テスト</span>
-                                <span className="chip">リリース</span>
-                                <span className="chip">ドキュメント整備</span>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li className="row">
-                        <div className="when">2020/05〜2021/03</div>
-                        <div>
-                            <div className="role">印刷会社クラウドシステム</div>
-                            <div className="meta">Go / AWS / TypeScript / React</div>
-                            <div className="skills">
-                                <span className="chip">要件定義</span>
-                                <span className="chip">設計</span>
-                                <span className="chip">開発</span>
-                                <span className="chip">テスト</span>
-                                <span className="chip">リリース</span>
-                                <span className="chip">ドキュメント整備</span>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li className="row">
-                        <div className="when">2019/11〜2020/04</div>
-                        <div>
-                            <div className="role">住宅ローン審査システム</div>
-                            <div className="meta">Python（Django）/ TypeScript / React</div>
-                            <div className="skills">
-                                <span className="chip">審査ロジック</span>
-                                <span className="chip">スコアリング</span>
-                                <span className="chip">コードレビュー</span>
-                                <span className="chip">進捗管理</span>
-                                <span className="chip">多関係者調整</span>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li className="row">
-                        <div className="when">2019/05〜2019/10</div>
-                        <div>
-                            <div className="role">保険営業職員向けタブレット連携</div>
-                            <div className="meta">Java（Spring）</div>
-                            <div className="skills">
-                                <span className="chip">申込者登録</span>
-                                <span className="chip">検索</span>
-                                <span className="chip">帳票出力</span>
-                                <span className="chip">設計</span>
-                                <span className="chip">開発</span>
-                                <span className="chip">テスト</span>
-                            </div>
-                        </div>
-                    </li>
+                        </li>
+                    ))}
                 </ul>
             </section>
+            {selectedProject && (
+                <div
+                    className="modal-overlay"
+                    onClick={() => setSelectedProject(null)}
+                >
+                    <div
+                        className="modal-card"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <div className="modal-header">
+                            <div>
+                                <div className="small">{selectedProject.period}</div>
+                                <h3 className="modal-title">{selectedProject.title}</h3>
+                                <div className="meta">{selectedProject.meta}</div>
+                            </div>
+
+                            <button
+                                className="modal-close"
+                                onClick={() => setSelectedProject(null)}
+                            >
+                                ×
+                            </button>
+                        </div>
+
+                        <div className="modal-text">
+                            {selectedProject.detail || "詳細は準備中です。"}
+                        </div>
+                    </div>
+                </div>
+            )}
 
             <footer>
                 © {new Date().getFullYear()} KMTech — Built with React + Vite.
