@@ -74,11 +74,15 @@ function App() {
                             <div className="kv">
                                 <b>経験年数</b>
                                 <div>
-                                    Go：2019/05〜現在（約6年10ヶ月）
+                                    Go：約6年
                                     <br />
-                                    TypeScript：2019/05〜現在（約6年10ヶ月）
+                                    TypeScript：約6年
                                     <br />
-                                    React：2019/05〜現在（約6年10ヶ月）
+                                    React：約6年
+                                    <br />
+                                    Python：6ヶ月
+                                    <br />
+                                    Java：6ヶ月
                                 </div>
                             </div>
                             <div className="kv">
@@ -87,7 +91,6 @@ function App() {
                             </div>
                         </div>
                         <p className="small" style={{ marginTop: "12px" }}>
-                            ※このページは1ファイルで完結（HTML+CSS）しています。必要なら「お問い合わせ」導線や「実績の数値（例：処理時間◯%改善）」も追記できます。
                         </p>
                     </div>
 
