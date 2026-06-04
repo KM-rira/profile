@@ -58,7 +58,7 @@ Go をメインとしつつ、TypeScript / Protocol Buffers / Spanner / Slack Bo
         id: "card-collection-game",
         period: "2025/02〜2025/09",
         title: "カードコレクションゲーム（新規開発）",
-        meta: "Go（Echo）/ Snowflake / TypeScript / React / GCP",
+        meta: "Go（Echo）/ Snowflake / TypeScript / React / AWS",
         chips: [
             "課金",
             "ガチャ",
