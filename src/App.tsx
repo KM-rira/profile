@@ -53,6 +53,20 @@ function App() {
                     <a className="btn" href="#skills">
                         🧰 Skills
                     </a>
+                    <a
+                        className="btn primary"
+                        href={`${import.meta.env.BASE_URL}/assets/履歴書_水戸部晃治.pdf`}
+                        download="履歴書_水戸部晃治.pdf"
+                    >
+                        📄 履歴書
+                    </a>
+                    <a
+                        className="btn primary"
+                        href={`${import.meta.env.BASE_URL}/assets/技術経歴書_水戸部晃治.pdf`}
+                        download="技術経歴書_水戸部晃治.pdf"
+                    >
+                        📄 技術経歴書
+                    </a>
                 </div>
             </header>
 
@@ -105,7 +119,6 @@ function App() {
 
                         <div className="skills" style={{ marginTop: "12px" }}>
                             <span className="chip">AWS Certified Developer – Associate</span>
-                            <span className="chip">GCP Associate Cloud Engineer</span>
                             <span className="chip">JDLA ディープラーニングG検定</span>
                             <span className="chip">Python3 エンジニア認定基礎資格</span>
                             <span className="chip">Python3 データ分析資格</span>
