@@ -62,10 +62,10 @@ function App() {
                     </a>
                     <a
                         className="btn primary"
-                        href={`${import.meta.env.BASE_URL}/assets/技術経歴書_水戸部晃治.pdf`}
-                        download="技術経歴書_水戸部晃治.pdf"
+                        href={`${import.meta.env.BASE_URL}/assets/職務経歴書_水戸部晃治.pdf`}
+                        download="職務経歴書__水戸部晃治.pdf"
                     >
-                        📄 技術経歴書
+                        📄 職務経歴書
                     </a>
                 </div>
             </header>
